@@ -6,15 +6,14 @@
   --font-display: "Cormorant Garamond", Georgia, serif;
   --font-mono: "JetBrains Mono", monospace;
 
-  --color-brand-gold: oklch(0.72 0.10 68);
-  --color-brand-gold-light: oklch(0.82 0.08 68);
-  --color-brand-gold-deep: oklch(0.58 0.12 62);
-  --color-brand-cream: oklch(0.98 0.005 80);
-  --color-brand-espresso: oklch(0.14 0.008 260);
-  --color-brand-dark: oklch(0.14 0.008 260);
-  --color-brand-navy: oklch(0.12 0.02 252);
-  --color-brand-sand: oklch(0.95 0.012 78);
-  --color-brand-mist: oklch(0.92 0.015 75);
+  --color-brand-blue: #0284c7;
+  --color-brand-gold: #0284c7;
+  --color-brand-cream: #f0f6fc;
+  --color-brand-espresso: #0c0f14;
+  --color-brand-dark: #0c0f14;
+  --color-brand-navy: #0a1628;
+  --color-brand-sand: #e8f1f8;
+  --color-brand-mist: #daeaf5;
 }
 
 html {

@@ -27,7 +27,7 @@ export default function Hero() {
       {/* Full-bleed video — Z-Axis cascade layer 0 */}
       <div className="relative min-h-[100dvh] w-full flex items-end">
         <video
-          src="https://cdn.scentbazaar.co/mp_.mp4"
+          src="https://cdn.scentbazaar.co/Video%20Project%204.mp4"
           poster="https://i0.wp.com/yachts1.com/wp-content/uploads/2025/10/Sanlorenzo-Yachts-scaled.jpg?fit=2560%2C1917&ssl=1"
           autoPlay
           loop
