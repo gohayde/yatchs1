@@ -63,30 +63,30 @@ export default function Footer() {
     <footer ref={footerRef} className="w-full font-sans">
 
       {/* About — warm cream, editorial split */}
-      <section className="bg-brand-sand border-t border-[#1a120b]/8">
+      <section className="bg-brand-sand border-t border-[#0c0f14]/8">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
             <div className="reveal space-y-6">
               <span className="inline-flex items-center gap-2 bg-brand-gold/12 border border-brand-gold/20 text-brand-gold text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full">
                 About Yachts1
               </span>
-              <h3 className="font-display font-light text-[#1a120b] text-4xl md:text-5xl leading-[0.95] tracking-tight">
+              <h3 className="font-display font-light text-[#0c0f14] text-4xl md:text-5xl leading-[0.95] tracking-tight">
                 Buy your next<br /><em className="italic text-brand-gold/80">yacht</em> with us.
               </h3>
-              <p className="text-sm leading-relaxed text-[#1a120b]/55 max-w-prose">
+              <p className="text-sm leading-relaxed text-[#0c0f14]/55 max-w-prose">
                 Yachts1 brings decades of experience in yacht sales, management, and after-sales support across the Middle East. Whether you're buying a yacht in Dubai, Qatar, KSA, Oman, or the Maldives, our brokers ensure a professional experience from first viewing to handover.
               </p>
             </div>
 
             <div className="reveal space-y-6" style={{ transitionDelay: '100ms' }}>
               <div className="gold-rule" />
-              <h3 className="font-display font-light text-[#1a120b] text-3xl leading-tight tracking-tight">
+              <h3 className="font-display font-light text-[#0c0f14] text-3xl leading-tight tracking-tight">
                 Sanlorenzo, Princess,<br />Cranchi — <em className="italic">and more.</em>
               </h3>
-              <p className="text-sm leading-relaxed text-[#1a120b]/55 max-w-prose">
+              <p className="text-sm leading-relaxed text-[#0c0f14]/55 max-w-prose">
                 We offer a curated selection of new and pre-owned yachts from the world's leading shipyards. Our team assists at every stage — inspection, documentation, insurance, registration, and crew placement.
               </p>
-              <p className="text-xs leading-relaxed text-[#1a120b]/35 italic font-light">
+              <p className="text-xs leading-relaxed text-[#0c0f14]/35 italic font-light">
                 Your trusted partner for luxury yacht ownership in the UAE and across the region.
               </p>
             </div>
@@ -144,7 +144,7 @@ export default function Footer() {
       </section>
 
       {/* Contact section */}
-      <section id="contact-section" className="bg-[#FDFBF7] border-t border-[#1a120b]/8 scroll-mt-24">
+      <section id="contact-section" className="bg-[#f0f6fc] border-t border-[#0c0f14]/8 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-32">
 
           {/* Section label */}
@@ -152,7 +152,7 @@ export default function Footer() {
             <span className="inline-flex items-center gap-2 bg-brand-gold/12 border border-brand-gold/20 text-brand-gold text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full mb-5">
               Get in touch
             </span>
-            <h2 className="font-display font-light text-[#1a120b] text-4xl md:text-5xl leading-[0.95] tracking-tight">
+            <h2 className="font-display font-light text-[#0c0f14] text-4xl md:text-5xl leading-[0.95] tracking-tight">
               Speak to a<br /><em className="italic text-brand-gold/80">broker.</em>
             </h2>
           </div>
@@ -161,34 +161,34 @@ export default function Footer() {
             {/* Col 1: Contact details */}
             <div className="reveal space-y-8" style={{ transitionDelay: '80ms' }}>
               {/* Address */}
-              <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-1.5 rounded-[2rem]">
-                <div className="bg-[#FDFBF7] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-4">
+              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem]">
+                <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-4">
                   <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">Location</p>
                   <div className="space-y-1">
-                    <p className="font-semibold text-[#1a120b] text-sm">Yachts One LLC</p>
-                    <p className="text-sm text-[#1a120b]/55">Dubai Marina Club, WH-453</p>
-                    <p className="text-sm text-[#1a120b]/55">P.O.Box 122261, Dubai, UAE</p>
+                    <p className="font-semibold text-[#0c0f14] text-sm">Yachts One LLC</p>
+                    <p className="text-sm text-[#0c0f14]/55">Dubai Marina Club, WH-453</p>
+                    <p className="text-sm text-[#0c0f14]/55">P.O.Box 122261, Dubai, UAE</p>
                   </div>
                   <div className="gold-rule" />
                   <div className="space-y-2">
-                    <a href="mailto:sales@yachts1.com" className="flex items-center gap-2.5 text-sm text-[#1a120b]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#1a120b]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="mailto:sales@yachts1.com" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M1 3l6 5 6-5M1 3v8h12V3H1z" />
                         </svg>
                       </span>
                       sales@yachts1.com
                     </a>
-                    <a href="tel:+971509955700" className="flex items-center gap-2.5 text-sm text-[#1a120b]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#1a120b]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="tel:+971509955700" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l2.5 1L5.5 5 4 6.5s1 2.5 3.5 3.5L9 8.5l2 1L12 12c-5.5 2-12-4.5-10-10z" />
                         </svg>
                       </span>
                       +971 50 995 5700
                     </a>
-                    <a href="tel:+97144563333" className="flex items-center gap-2.5 text-sm text-[#1a120b]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#1a120b]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="tel:+97144563333" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l2.5 1L5.5 5 4 6.5s1 2.5 3.5 3.5L9 8.5l2 1L12 12c-5.5 2-12-4.5-10-10z" />
                         </svg>
@@ -213,7 +213,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={label}
-                    className="group w-9 h-9 bg-[#1a120b]/5 border border-[#1a120b]/8 rounded-full flex items-center justify-center text-[#1a120b]/35 hover:text-brand-gold hover:bg-brand-gold/10 hover:border-brand-gold/20 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                    className="group w-9 h-9 bg-[#0c0f14]/5 border border-[#0c0f14]/8 rounded-full flex items-center justify-center text-[#0c0f14]/35 hover:text-brand-gold hover:bg-brand-gold/10 hover:border-brand-gold/20 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
                       <path d={path} />
@@ -225,7 +225,7 @@ export default function Footer() {
 
             {/* Col 2: Map */}
             <div className="reveal" style={{ transitionDelay: '160ms' }}>
-              <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-1.5 rounded-[2rem] h-full min-h-[280px]">
+              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem] h-full min-h-[280px]">
                 <div className="bg-brand-sand rounded-[calc(2rem-0.375rem)] overflow-hidden h-full relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]">
                   <iframe
                     title="Yachts1 Dubai Marina location"
@@ -235,8 +235,8 @@ export default function Footer() {
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                   />
-                  <div className="absolute top-4 left-4 bg-[#FDFBF7]/95 border border-[#1a120b]/8 px-3 py-1.5 rounded-full">
-                    <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#1a120b]/60">Dubai Marina</span>
+                  <div className="absolute top-4 left-4 bg-[#f0f6fc]/95 border border-[#0c0f14]/8 px-3 py-1.5 rounded-full">
+                    <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#0c0f14]/60">Dubai Marina</span>
                   </div>
                 </div>
               </div>
@@ -244,8 +244,8 @@ export default function Footer() {
 
             {/* Col 3: Contact form */}
             <div className="reveal" style={{ transitionDelay: '240ms' }}>
-              <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-1.5 rounded-[2rem] h-full">
-                <div className="bg-[#FDFBF7] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-5 h-full">
+              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem] h-full">
+                <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-5 h-full">
                   <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">Send an inquiry</p>
 
                   <form onSubmit={handleContactSubmit} className="space-y-3" noValidate>
@@ -256,7 +256,7 @@ export default function Footer() {
                         { id: 'c-phone', type: 'tel', placeholder: 'Phone number', req: false, val: formData.phone, key: 'phone' },
                         { id: 'c-country', type: 'text', placeholder: 'Country', req: false, val: formData.country, key: 'country' },
                       ].map(({ id, type, placeholder, req, val, key }) => (
-                        <div key={id} className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-0.5 rounded-xl">
+                        <div key={id} className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-0.5 rounded-xl">
                           <input
                             id={id}
                             type={type}
@@ -264,13 +264,13 @@ export default function Footer() {
                             placeholder={placeholder}
                             value={val}
                             onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                            className="w-full bg-[#FDFBF7] rounded-[calc(0.75rem-0.125rem)] px-3 py-2.5 text-xs font-sans text-[#1a120b] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all placeholder:text-[#1a120b]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                            className="w-full bg-[#f0f6fc] rounded-[calc(0.75rem-0.125rem)] px-3 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                           />
                         </div>
                       ))}
                     </div>
 
-                    <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-0.5 rounded-2xl">
+                    <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-0.5 rounded-2xl">
                       <textarea
                         id="c-message"
                         required
@@ -278,17 +278,17 @@ export default function Footer() {
                         placeholder="How can we help?"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-[#FDFBF7] rounded-[calc(1rem-0.125rem)] px-3.5 py-2.5 text-xs font-sans text-[#1a120b] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all resize-none placeholder:text-[#1a120b]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                        className="w-full bg-[#f0f6fc] rounded-[calc(1rem-0.125rem)] px-3.5 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all resize-none placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                       />
                     </div>
 
                     <button
                       type="submit"
                       disabled={formStatus === 'sending'}
-                      className="group w-full inline-flex items-center justify-between bg-[#1a120b] hover:bg-brand-espresso disabled:opacity-70 text-[#FDFBF7] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+                      className="group w-full inline-flex items-center justify-between bg-[#0c0f14] hover:bg-brand-espresso disabled:opacity-70 text-[#f0f6fc] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
                     >
                       {formStatus === 'sending' ? 'Sending...' : 'Send message'}
-                      <span className="w-9 h-9 rounded-full bg-[#FDFBF7]/12 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+                      <span className="w-9 h-9 rounded-full bg-[#f0f6fc]/12 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                         <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M1 7l5.5-5.5L12 7M6.5 1.5V13" />
                         </svg>

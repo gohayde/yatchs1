@@ -38,8 +38,8 @@ export default function Hero() {
         />
 
         {/* Multi-layer gradient — deeper, more editorial */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#1a120b] via-[#1a120b]/50 to-[#1a120b]/10" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#1a120b]/60 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f14] via-[#0c0f14]/50 to-[#0c0f14]/10" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0c0f14]/60 via-transparent to-transparent" />
 
         {/* Warm ambient glow at bottom */}
         <div className="absolute bottom-0 left-0 w-[60%] h-[40%] bg-brand-gold/5 blur-[100px] pointer-events-none" />
@@ -94,10 +94,10 @@ export default function Hero() {
                 {/* Primary CTA — button-in-button */}
                 <a
                   href="#yachts-grid"
-                  className="group inline-flex items-center gap-3 bg-[#FDFBF7] text-[#1a120b] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full transition-all duration-600 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
+                  className="group inline-flex items-center gap-3 bg-[#f0f6fc] text-[#0c0f14] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full transition-all duration-600 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-white active:scale-[0.98]"
                 >
                   Browse fleet
-                  <span className="w-8 h-8 rounded-full bg-[#1a120b]/8 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+                  <span className="w-8 h-8 rounded-full bg-[#0c0f14]/8 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                     <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M2 12L12 2M12 2H4M12 2v8" />
                     </svg>
@@ -129,7 +129,7 @@ export default function Hero() {
                 className="bg-white/8 border border-white/12 p-1.5 rounded-[1.5rem] w-64"
                 style={{ transform: 'rotate(1.5deg) translateY(-8px)' }}
               >
-                <div className="bg-[#FDFBF7]/10 rounded-[calc(1.5rem-0.375rem)] p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
+                <div className="bg-[#f0f6fc]/10 rounded-[calc(1.5rem-0.375rem)] p-5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.12)]">
                   <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-white/40 font-sans mb-1">Fleet size</p>
                   <p className="font-display text-5xl font-light text-white leading-none">30+</p>
                   <p className="text-xs text-white/50 mt-1.5 font-sans">Vessels in stock</p>

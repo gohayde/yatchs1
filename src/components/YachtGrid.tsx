@@ -108,7 +108,7 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
               </span>
             </div>
             <h2
-              className="reveal font-display font-light text-[#1a120b] leading-[0.95] text-[clamp(2.5rem,5vw,4rem)] tracking-[-0.02em]"
+              className="reveal font-display font-light text-[#0c0f14] leading-[0.95] text-[clamp(2.5rem,5vw,4rem)] tracking-[-0.02em]"
               style={{ transitionDelay: '80ms' }}
             >
               {filteredYachts.length} {filteredYachts.length === 1 ? 'vessel' : 'vessels'}
@@ -122,16 +122,16 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
             style={{ transitionDelay: '160ms' }}
           >
             {/* Search — Double-Bezel input */}
-            <div className="relative flex-1 md:w-72 bg-[#1a120b]/4 border border-[#1a120b]/8 rounded-full p-0.5">
+            <div className="relative flex-1 md:w-72 bg-[#0c0f14]/4 border border-[#0c0f14]/8 rounded-full p-0.5">
               <div className="relative">
                 <input
                   type="search"
                   placeholder="Search by model or engine..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full bg-[#FDFBF7] rounded-full py-2.5 pl-9 pr-4 text-[11px] font-sans text-[#1a120b] focus:outline-none focus:ring-2 focus:ring-brand-gold/30 transition-all placeholder:text-[#1a120b]/35 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                  className="w-full bg-[#f0f6fc] rounded-full py-2.5 pl-9 pr-4 text-[11px] font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/30 transition-all placeholder:text-[#0c0f14]/35 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                 />
-                <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#1a120b]/30 pointer-events-none" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
+                <svg className="absolute left-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-[#0c0f14]/30 pointer-events-none" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 10.5l3 3M7 12A5 5 0 107 2a5 5 0 000 10z" />
                 </svg>
               </div>
@@ -140,7 +140,7 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
             {(activeBrand || searchQuery) && (
               <button
                 onClick={() => { setActiveBrand(''); setSearchQuery(''); }}
-                className="text-[10px] font-bold text-[#1a120b]/50 hover:text-[#1a120b] uppercase tracking-wider py-2.5 px-4 bg-[#1a120b]/5 border border-[#1a120b]/8 rounded-full hover:bg-[#1a120b]/10 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] whitespace-nowrap cursor-pointer"
+                className="text-[10px] font-bold text-[#0c0f14]/50 hover:text-[#0c0f14] uppercase tracking-wider py-2.5 px-4 bg-[#0c0f14]/5 border border-[#0c0f14]/8 rounded-full hover:bg-[#0c0f14]/10 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] whitespace-nowrap cursor-pointer"
               >
                 Clear
               </button>
@@ -168,9 +168,9 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                 onClick={() => handleOpenInquiry(yacht)}
               >
                 {/* Outer shell — Double-Bezel */}
-                <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-1.5 rounded-[2rem] h-full">
+                <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem] h-full">
                   {/* Inner core */}
-                  <div className="bg-[#FDFBF7] rounded-[calc(2rem-0.375rem)] overflow-hidden h-full flex flex-col shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                  <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] overflow-hidden h-full flex flex-col shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
 
                     {/* Image */}
                     <div className={`relative overflow-hidden bg-brand-sand ${index % 7 === 0 ? 'aspect-[21/9]' : 'aspect-[16/10]'}`}>
@@ -182,15 +182,15 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                         referrerPolicy="no-referrer"
                       />
                       {/* Image overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-[#1a120b]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f14]/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                       {/* Brand pill */}
-                      <div className="absolute top-4 left-4 bg-[#1a120b]/70 text-white text-[8px] uppercase tracking-[0.18em] font-bold py-1 px-3 rounded-full font-sans">
+                      <div className="absolute top-4 left-4 bg-[#0c0f14]/70 text-white text-[8px] uppercase tracking-[0.18em] font-bold py-1 px-3 rounded-full font-sans">
                         {yacht.brand}
                       </div>
 
                       {/* Available dot */}
-                      <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-[#1a120b]/60 text-emerald-400 text-[8px] uppercase tracking-[0.12em] font-bold py-1 px-2.5 rounded-full font-sans">
+                      <div className="absolute top-4 right-4 flex items-center gap-1.5 bg-[#0c0f14]/60 text-emerald-400 text-[8px] uppercase tracking-[0.12em] font-bold py-1 px-2.5 rounded-full font-sans">
                         <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 shadow-[0_0_5px_rgba(52,211,153,0.9)]" />
                         In stock
                       </div>
@@ -199,10 +199,10 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                     {/* Card body */}
                     <div className="p-5 md:p-6 flex-1 flex flex-col">
                       <div className="flex items-start justify-between mb-4">
-                        <h3 className="font-display font-light text-[#1a120b] text-xl md:text-2xl leading-tight tracking-tight group-hover:text-brand-gold transition-colors duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                        <h3 className="font-display font-light text-[#0c0f14] text-xl md:text-2xl leading-tight tracking-tight group-hover:text-brand-gold transition-colors duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]">
                           {yacht.name}
                         </h3>
-                        <span className="text-[10px] font-bold text-[#1a120b]/35 uppercase tracking-wider font-sans mt-1">
+                        <span className="text-[10px] font-bold text-[#0c0f14]/35 uppercase tracking-wider font-sans mt-1">
                           Price on request
                         </span>
                       </div>
@@ -219,18 +219,18 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                           { label: 'Engines', value: yacht.engines },
                         ].map(({ label, value }) => (
                           <div key={label}>
-                            <dt className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#1a120b]/35 font-sans mb-0.5">{label}</dt>
-                            <dd className="font-sans font-semibold text-[#1a120b]/80 text-[11px] truncate">{value}</dd>
+                            <dt className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#0c0f14]/35 font-sans mb-0.5">{label}</dt>
+                            <dd className="font-sans font-semibold text-[#0c0f14]/80 text-[11px] truncate">{value}</dd>
                           </div>
                         ))}
                       </dl>
 
                       {/* CTA row */}
-                      <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#1a120b]/6">
+                      <div className="flex items-center justify-between mt-5 pt-4 border-t border-[#0c0f14]/6">
                         <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-emerald-700/80 font-sans">
                           Available for viewing
                         </span>
-                        <span className="group-hover:text-brand-gold text-[#1a120b]/30 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]">
+                        <span className="group-hover:text-brand-gold text-[#0c0f14]/30 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]">
                           <svg className="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M3 13L13 3M13 3H5M13 3v8" />
                           </svg>
@@ -247,19 +247,19 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
         {/* Empty state */}
         {filteredYachts.length === 0 && (
           <div className="py-36 text-center max-w-sm mx-auto">
-            <div className="w-16 h-16 bg-[#1a120b]/5 border border-[#1a120b]/8 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6">
-              <svg className="w-7 h-7 text-[#1a120b]/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
+            <div className="w-16 h-16 bg-[#0c0f14]/5 border border-[#0c0f14]/8 rounded-[1.5rem] flex items-center justify-center mx-auto mb-6">
+              <svg className="w-7 h-7 text-[#0c0f14]/25" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M20 12V8a2 2 0 00-2-2H6a2 2 0 00-2 2v4m16 0v4a2 2 0 01-2 2H6a2 2 0 01-2-2v-4m16 0H4M12 6v6m0 0l-2-2m2 2l2-2" />
               </svg>
             </div>
-            <p className="font-display font-light text-2xl text-[#1a120b]/80 mb-2">No vessels found</p>
-            <p className="text-sm text-[#1a120b]/45 font-sans mb-8 leading-relaxed">We have 30 luxury yachts ready for viewing in Dubai Marina. Reset to browse the full catalogue.</p>
+            <p className="font-display font-light text-2xl text-[#0c0f14]/80 mb-2">No vessels found</p>
+            <p className="text-sm text-[#0c0f14]/45 font-sans mb-8 leading-relaxed">We have 30 luxury yachts ready for viewing in Dubai Marina. Reset to browse the full catalogue.</p>
             <button
               onClick={() => { setActiveBrand(''); setSearchQuery(''); }}
-              className="group inline-flex items-center gap-3 bg-[#1a120b] text-[#FDFBF7] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-brand-espresso active:scale-[0.98]"
+              className="group inline-flex items-center gap-3 bg-[#0c0f14] text-[#f0f6fc] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-brand-espresso active:scale-[0.98]"
             >
               View all yachts
-              <span className="w-8 h-8 rounded-full bg-[#FDFBF7]/15 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+              <span className="w-8 h-8 rounded-full bg-[#f0f6fc]/15 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                 <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M2 12L12 2M12 2H4M12 2v8" />
                 </svg>
@@ -277,7 +277,7 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: [0.32, 0.72, 0, 1] }}
-            className="fixed inset-0 z-[70] flex items-end md:items-center justify-center p-0 md:p-6 bg-[#1a120b]/60 backdrop-blur-md"
+            className="fixed inset-0 z-[70] flex items-end md:items-center justify-center p-0 md:p-6 bg-[#0c0f14]/60 backdrop-blur-md"
             role="dialog"
             aria-modal="true"
             aria-label={`Inquiry for ${selectedYacht.name}`}
@@ -291,9 +291,9 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
               className="w-full max-w-lg"
             >
               {/* Outer shell */}
-              <div className="bg-[#1a120b]/5 border border-[#1a120b]/12 p-1.5 rounded-[2rem] md:rounded-[2rem] rounded-b-none md:rounded-b-[2rem]">
+              <div className="bg-[#0c0f14]/5 border border-[#0c0f14]/12 p-1.5 rounded-[2rem] md:rounded-[2rem] rounded-b-none md:rounded-b-[2rem]">
                 {/* Inner core */}
-                <div className="bg-[#FDFBF7] rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.375rem)] rounded-b-none md:rounded-b-[calc(2rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
+                <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] md:rounded-[calc(2rem-0.375rem)] rounded-b-none md:rounded-b-[calc(2rem-0.375rem)] overflow-hidden shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)]">
 
                   {/* Modal image */}
                   <div className="relative h-44 bg-brand-espresso overflow-hidden">
@@ -303,11 +303,11 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                       className="w-full h-full object-cover opacity-75"
                       referrerPolicy="no-referrer"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#1a120b]/90 via-[#1a120b]/30 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0c0f14]/90 via-[#0c0f14]/30 to-transparent" />
 
                     <button
                       onClick={() => setShowModal(false)}
-                      className="absolute top-4 right-4 w-8 h-8 bg-[#1a120b]/50 hover:bg-[#1a120b]/75 text-white rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
+                      className="absolute top-4 right-4 w-8 h-8 bg-[#0c0f14]/50 hover:bg-[#0c0f14]/75 text-white rounded-full flex items-center justify-center transition-all duration-300 cursor-pointer"
                       aria-label="Close"
                     >
                       <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="2">
@@ -334,15 +334,15 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                             <path strokeLinecap="round" strokeLinejoin="round" d="M4 10l4 4 8-8" />
                           </svg>
                         </div>
-                        <h4 className="font-display font-light text-xl text-[#1a120b]">Inquiry received</h4>
-                        <p className="text-sm text-[#1a120b]/50 font-sans max-w-xs mx-auto leading-relaxed">
+                        <h4 className="font-display font-light text-xl text-[#0c0f14]">Inquiry received</h4>
+                        <p className="text-sm text-[#0c0f14]/50 font-sans max-w-xs mx-auto leading-relaxed">
                           A broker will prepare your private specifications sheet and reach out within 2 hours.
                         </p>
                       </div>
                     ) : (
                       <form onSubmit={handleInquirySubmit} className="space-y-4" noValidate>
                         {/* Quick specs */}
-                        <div className="grid grid-cols-4 gap-2 bg-[#1a120b]/[0.03] border border-[#1a120b]/6 p-3.5 rounded-2xl tabular">
+                        <div className="grid grid-cols-4 gap-2 bg-[#0c0f14]/[0.03] border border-[#0c0f14]/6 p-3.5 rounded-2xl tabular">
                           {[
                             { label: 'Length', value: selectedYacht.loa },
                             { label: 'Beam', value: selectedYacht.beam },
@@ -350,8 +350,8 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                             { label: 'Engines', value: selectedYacht.engines },
                           ].map(({ label, value }) => (
                             <div key={label} className="text-center">
-                              <dt className="text-[8px] font-bold uppercase tracking-[0.15em] text-[#1a120b]/35 font-sans">{label}</dt>
-                              <dd className="font-sans font-semibold text-[#1a120b]/80 text-[10px] truncate mt-0.5">{value}</dd>
+                              <dt className="text-[8px] font-bold uppercase tracking-[0.15em] text-[#0c0f14]/35 font-sans">{label}</dt>
+                              <dd className="font-sans font-semibold text-[#0c0f14]/80 text-[10px] truncate mt-0.5">{value}</dd>
                             </div>
                           ))}
                         </div>
@@ -364,10 +364,10 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                             { id: 'inquiry-phone', type: 'tel', label: 'WhatsApp / Mobile', required: false, placeholder: '+971 50 847 2193', value: inquiryPhone, onChange: setInquiryPhone },
                           ].map(({ id, type, label, required, placeholder, value, onChange }) => (
                             <div key={id}>
-                              <label htmlFor={id} className="block text-[9px] font-bold text-[#1a120b]/45 uppercase tracking-[0.15em] font-sans mb-1.5">
+                              <label htmlFor={id} className="block text-[9px] font-bold text-[#0c0f14]/45 uppercase tracking-[0.15em] font-sans mb-1.5">
                                 {label}{required && <span className="text-brand-gold ml-1">*</span>}
                               </label>
-                              <div className="bg-[#1a120b]/[0.03] border border-[#1a120b]/8 p-0.5 rounded-xl">
+                              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-0.5 rounded-xl">
                                 <input
                                   id={id}
                                   type={type}
@@ -375,7 +375,7 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
                                   value={value}
                                   onChange={(e) => onChange(e.target.value)}
                                   placeholder={placeholder}
-                                  className="w-full bg-[#FDFBF7] rounded-[calc(0.75rem-0.125rem)] px-3.5 py-2.5 text-sm font-sans text-[#1a120b] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all placeholder:text-[#1a120b]/25 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                                  className="w-full bg-[#f0f6fc] rounded-[calc(0.75rem-0.125rem)] px-3.5 py-2.5 text-sm font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all placeholder:text-[#0c0f14]/25 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                                 />
                               </div>
                             </div>
@@ -384,10 +384,10 @@ export default function YachtGrid({ activeBrand, setActiveBrand, onSelectYacht }
 
                         <button
                           type="submit"
-                          className="group w-full inline-flex items-center justify-between bg-[#1a120b] text-[#FDFBF7] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-brand-espresso active:scale-[0.98] mt-1"
+                          className="group w-full inline-flex items-center justify-between bg-[#0c0f14] text-[#f0f6fc] text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] hover:bg-brand-espresso active:scale-[0.98] mt-1"
                         >
                           Request price & brochure
-                          <span className="w-9 h-9 rounded-full bg-[#FDFBF7]/12 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
+                          <span className="w-9 h-9 rounded-full bg-[#f0f6fc]/12 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
                             <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                               <path strokeLinecap="round" strokeLinejoin="round" d="M2 12L12 2M12 2H4M12 2v8" />
                             </svg>
