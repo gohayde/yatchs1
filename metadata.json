@@ -1,0 +1,6 @@
+{
+  "name": "Yachts1 - Luxury Yacht Dealer",
+  "description": "Premium 1:1 clone of the Yachts1 luxury yacht dealership website in the Middle East with interactive listings, robust search/filters, contact request form, and responsive design.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, sans-serif;
+  --font-display: "Cormorant Garamond", Georgia, serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --color-brand-blue: #0284c7;
+  --color-brand-gold: #0284c7;
+  --color-brand-cream: #f0f6fc;
+  --color-brand-espresso: #0c0f14;
+  --color-brand-dark: #0c0f14;
+  --color-brand-navy: #0a1628;
+  --color-brand-sand: #e8f1f8;
+  --color-brand-mist: #daeaf5;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f0f6fc;
+  color: #0c0f14;
+  overflow-x: hidden;
+}
+
+/* Premium scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #e8f1f8; }
+::-webkit-scrollbar-thumb { background: #0284c7; border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: #0369a1; }
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  background: #0284c7;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 6px 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  z-index: 200;
+  text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* Fixed grain overlay — GPU safe, pointer-events-none */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 1;
+  mix-blend-mode: multiply;
+  z-index: 100;
+}
+
+/* Card lift — Editorial luxury spring */
+.card-lift {
+  transition: transform 0.6s cubic-bezier(0.32, 0.72, 0, 1), box-shadow 0.6s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.card-lift:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 32px 64px -16px rgba(12, 15, 20, 0.14),
+    0 8px 24px -8px rgba(2, 132, 199, 0.12);
+}
+
+/* Tabular numbers */
+.tabular { font-variant-numeric: tabular-nums; }
+
+/* Scroll reveal base */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(4px);
+  transition:
+    opacity 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+    transform 0.9s cubic-bezier(0.32, 0.72, 0, 1),
+    filter 0.9s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+/* Stagger delays for children */
+.reveal-stagger > *:nth-child(1) { transition-delay: 0ms; }
+.reveal-stagger > *:nth-child(2) { transition-delay: 80ms; }
+.reveal-stagger > *:nth-child(3) { transition-delay: 160ms; }
+.reveal-stagger > *:nth-child(4) { transition-delay: 240ms; }
+.reveal-stagger > *:nth-child(5) { transition-delay: 320ms; }
+.reveal-stagger > *:nth-child(6) { transition-delay: 400ms; }
+
+/* Gold shimmer line */
+.gold-rule {
+  background: linear-gradient(90deg, transparent, #b8965a 40%, transparent);
+  height: 1px;
+  opacity: 0.4;
+}
