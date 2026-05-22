@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import Marquee from './components/Marquee';
 import YachtGrid from './components/YachtGrid';
 import Footer from './components/Footer';
 import Floater from './components/Floater';
@@ -16,7 +17,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafa] flex flex-col justify-between selection:bg-brand-blue selection:text-white">
+    <div className="min-h-screen bg-[#fafafa] flex flex-col justify-between selection:bg-brand-blue selection:text-white overflow-x-hidden">
       {/* Upper Site Header and Filter Pill tabs */}
       <Header 
         activeBrand={activeBrand} 
@@ -28,6 +29,9 @@ export default function App() {
       <main className="flex-grow">
         {/* Hero showcase */}
         <Hero />
+
+        {/* Marquee ticker */}
+        <Marquee />
 
         {/* Dynamic Interactive Yacht list grid */}
         <YachtGrid 

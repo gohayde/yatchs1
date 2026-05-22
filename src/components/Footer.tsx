@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { ContactFormInput, SubscriptionInput } from '../types';
+import React, { useState, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useGSAP } from '@gsap/react';
+import { ContactFormInput } from '../types';
 import { getSupabase, isSupabaseConfigured } from '../lib/supabase';
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 export default function Footer() {
   const [subEmail, setSubEmail] = useState('');
@@ -9,19 +14,55 @@ export default function Footer() {
   const [formStatus, setFormStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const footerRef = useRef<HTMLElement>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     const footer = footerRef.current;
     if (!footer) return;
-    const nodes = footer.querySelectorAll<HTMLElement>('.reveal');
-    const obs = new IntersectionObserver(
-      (entries) => entries.forEach((e) => {
-        if (e.isIntersecting) { (e.target as HTMLElement).classList.add('is-visible'); obs.unobserve(e.target); }
-      }),
-      { threshold: 0.1 }
-    );
-    nodes.forEach((n) => obs.observe(n));
-    return () => obs.disconnect();
-  }, []);
+
+    // Initialize reveal state before ScrollTrigger fires so content does not flash visible first.
+    const els = footer.querySelectorAll<HTMLElement>('.gsap-reveal');
+    gsap.set(els, { y: 32, autoAlpha: 0 });
+
+    els.forEach((el, i) => {
+      gsap.to(
+        el,
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.5,
+          delay: (i % 3) * 0.07,
+          ease: 'power3.out',
+          clearProps: 'transform,visibility,opacity',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 90%',
+            once: true,
+          },
+        }
+      );
+    });
+
+    // Subscribe section — split heading words
+    const subWords = footer.querySelectorAll<HTMLElement>('.sub-word');
+    if (subWords.length) {
+      gsap.set(subWords, { y: 28, autoAlpha: 0 });
+      gsap.to(
+        subWords,
+        {
+          y: 0,
+          autoAlpha: 1,
+          duration: 0.45,
+          stagger: 0.04,
+          ease: 'power3.out',
+          clearProps: 'transform,visibility,opacity',
+          scrollTrigger: {
+            trigger: subWords[0],
+            start: 'top 88%',
+            once: true,
+          },
+        }
+      );
+    }
+  }, { scope: footerRef });
 
   const handleSubscribe = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -62,29 +103,29 @@ export default function Footer() {
   return (
     <footer ref={footerRef} className="w-full font-sans">
 
-      {/* About — warm cream, editorial split */}
+      {/* About */}
       <section className="bg-brand-sand border-t border-[#0c0f14]/8">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-32">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
-            <div className="reveal space-y-6">
-              <span className="inline-flex items-center gap-2 bg-brand-gold/12 border border-brand-gold/20 text-brand-gold text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full">
+            <div className="gsap-reveal space-y-6">
+              <span className="inline-flex items-center gap-2 bg-brand-blue/12 border border-brand-blue/20 text-brand-blue text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full">
                 About Yachts1
               </span>
               <h3 className="font-display font-light text-[#0c0f14] text-4xl md:text-5xl leading-[0.95] tracking-tight">
-                Buy your next<br /><em className="italic text-brand-gold/80">yacht</em> with us.
+                Buy your next<br /><em className="italic text-brand-blue/80">yacht</em> with us.
               </h3>
               <p className="text-sm leading-relaxed text-[#0c0f14]/55 max-w-prose">
                 Yachts1 brings decades of experience in yacht sales, management, and after-sales support across the Middle East. Whether you're buying a yacht in Dubai, Qatar, KSA, Oman, or the Maldives, our brokers ensure a professional experience from first viewing to handover.
               </p>
             </div>
 
-            <div className="reveal space-y-6" style={{ transitionDelay: '100ms' }}>
-              <div className="gold-rule" />
+            <div className="gsap-reveal space-y-6">
+              <div className="blue-rule" />
               <h3 className="font-display font-light text-[#0c0f14] text-3xl leading-tight tracking-tight">
-                Sanlorenzo, Princess,<br />Cranchi — <em className="italic">and more.</em>
+                Sanlorenzo, Princess,<br />Cranchi <em className="italic">and more.</em>
               </h3>
               <p className="text-sm leading-relaxed text-[#0c0f14]/55 max-w-prose">
-                We offer a curated selection of new and pre-owned yachts from the world's leading shipyards. Our team assists at every stage — inspection, documentation, insurance, registration, and crew placement.
+                We offer a curated selection of new and pre-owned yachts from the world's leading shipyards. Our team assists at every stage: inspection, documentation, insurance, registration, and crew placement.
               </p>
               <p className="text-xs leading-relaxed text-[#0c0f14]/35 italic font-light">
                 Your trusted partner for luxury yacht ownership in the UAE and across the region.
@@ -94,24 +135,27 @@ export default function Footer() {
         </div>
       </section>
 
-      {/* Subscribe — dark espresso band */}
-      <section className="bg-brand-espresso py-28 px-6 md:px-10">
-        <div className="max-w-7xl mx-auto">
-          <div className="reveal grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      {/* Subscribe */}
+      <section className="bg-brand-espresso py-28 px-6 md:px-10 relative overflow-hidden">
+        {/* Ambient glow */}
+        <div className="absolute top-0 right-0 w-[50%] h-full bg-brand-blue/4 blur-[160px] pointer-events-none" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <div>
-              <span className="inline-flex items-center gap-2 bg-brand-gold/15 border border-brand-gold/25 text-brand-gold text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full mb-5">
+              <span className="gsap-reveal inline-flex items-center gap-2 bg-brand-blue/15 border border-brand-blue/25 text-brand-blue text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full mb-5">
                 Broker network
               </span>
               <h3 className="font-display font-light text-white text-4xl md:text-5xl leading-[0.95] tracking-tight">
-                Private listings,<br /><em className="italic text-brand-gold/80">first.</em>
+                <span className="sub-word inline-block">Private</span>{' '}
+                <span className="sub-word inline-block">listings,</span><br />
+                <em className="sub-word inline-block italic text-brand-blue/80">first.</em>
               </h3>
-              <p className="mt-4 text-sm text-white/45 font-normal leading-relaxed max-w-sm">
+              <p className="gsap-reveal mt-4 text-sm text-white/45 font-normal leading-relaxed max-w-sm">
                 Join our broker network for early access to new builds and off-market yachts.
               </p>
             </div>
 
-            <form onSubmit={handleSubscribe} className="space-y-3">
-              {/* Double-bezel input */}
+            <form onSubmit={handleSubscribe} className="gsap-reveal space-y-3">
               <div className="bg-white/5 border border-white/10 p-1 rounded-2xl">
                 <input
                   type="email"
@@ -120,13 +164,13 @@ export default function Footer() {
                   onChange={(e) => setSubEmail(e.target.value)}
                   placeholder="your@email.com"
                   disabled={subStatus !== 'idle'}
-                  className="w-full bg-white/8 rounded-[calc(1rem-0.25rem)] px-4 py-3.5 text-sm font-sans text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-brand-gold/30 transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
+                  className="w-full bg-white/8 rounded-xl px-4 py-3.5 text-sm font-sans text-white placeholder:text-white/25 focus:outline-none focus:ring-2 focus:ring-brand-blue/30 transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                 />
               </div>
               <button
                 type="submit"
                 disabled={subStatus !== 'idle'}
-                className="group w-full inline-flex items-center justify-between bg-brand-gold hover:bg-brand-gold/90 disabled:opacity-60 text-white text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
+                className="group w-full inline-flex items-center justify-between bg-brand-blue hover:bg-brand-blue/90 disabled:opacity-60 text-white text-[11px] font-bold uppercase tracking-[0.12em] pl-5 pr-1.5 py-1.5 rounded-full cursor-pointer transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] active:scale-[0.98]"
               >
                 {subStatus === 'checking' ? 'Saving...' : subStatus === 'success' ? 'Subscribed ✓' : 'Subscribe to private listings'}
                 <span className="w-9 h-9 rounded-full bg-white/15 flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] group-hover:translate-x-0.5 group-hover:-translate-y-px group-hover:scale-105">
@@ -147,48 +191,46 @@ export default function Footer() {
       <section id="contact-section" className="bg-[#f0f6fc] border-t border-[#0c0f14]/8 scroll-mt-24">
         <div className="max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-32">
 
-          {/* Section label */}
-          <div className="reveal mb-16">
-            <span className="inline-flex items-center gap-2 bg-brand-gold/12 border border-brand-gold/20 text-brand-gold text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full mb-5">
+          <div className="gsap-reveal mb-16">
+            <span className="inline-flex items-center gap-2 bg-brand-blue/12 border border-brand-blue/20 text-brand-blue text-[9px] uppercase tracking-[0.25em] font-bold px-3.5 py-1.5 rounded-full mb-5">
               Get in touch
             </span>
             <h2 className="font-display font-light text-[#0c0f14] text-4xl md:text-5xl leading-[0.95] tracking-tight">
-              Speak to a<br /><em className="italic text-brand-gold/80">broker.</em>
+              Speak to a<br /><em className="italic text-brand-blue/80">broker.</em>
             </h2>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Col 1: Contact details */}
-            <div className="reveal space-y-8" style={{ transitionDelay: '80ms' }}>
-              {/* Address */}
-              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem]">
-                <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-4">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">Location</p>
+            <div className="gsap-reveal space-y-8">
+              <div className="bg-[#0c0f14]/3 border border-[#0c0f14]/8 p-1.5 rounded-4xl">
+                <div className="bg-[#f0f6fc] rounded-[1.625rem] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-4">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-blue font-sans">Location</p>
                   <div className="space-y-1">
                     <p className="font-semibold text-[#0c0f14] text-sm">Yachts One LLC</p>
                     <p className="text-sm text-[#0c0f14]/55">Dubai Marina Club, WH-453</p>
                     <p className="text-sm text-[#0c0f14]/55">P.O.Box 122261, Dubai, UAE</p>
                   </div>
-                  <div className="gold-rule" />
+                  <div className="blue-rule" />
                   <div className="space-y-2">
-                    <a href="mailto:sales@yachts1.com" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="mailto:sales@yachts1.com" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-blue transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center shrink-0 group-hover:bg-brand-blue/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M1 3l6 5 6-5M1 3v8h12V3H1z" />
                         </svg>
                       </span>
                       sales@yachts1.com
                     </a>
-                    <a href="tel:+971509955700" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="tel:+971509955700" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-blue transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center shrink-0 group-hover:bg-brand-blue/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l2.5 1L5.5 5 4 6.5s1 2.5 3.5 3.5L9 8.5l2 1L12 12c-5.5 2-12-4.5-10-10z" />
                         </svg>
                       </span>
                       +971 50 995 5700
                     </a>
-                    <a href="tel:+97144563333" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-gold transition-colors duration-300 group">
-                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center flex-shrink-0 group-hover:bg-brand-gold/10 transition-colors duration-300">
+                    <a href="tel:+97144563333" className="flex items-center gap-2.5 text-sm text-[#0c0f14]/60 hover:text-brand-blue transition-colors duration-300 group">
+                      <span className="w-7 h-7 rounded-full bg-[#0c0f14]/5 flex items-center justify-center shrink-0 group-hover:bg-brand-blue/10 transition-colors duration-300">
                         <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M2 2l2.5 1L5.5 5 4 6.5s1 2.5 3.5 3.5L9 8.5l2 1L12 12c-5.5 2-12-4.5-10-10z" />
                         </svg>
@@ -199,7 +241,6 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Social links */}
               <div className="flex items-center gap-2">
                 {[
                   { label: 'Facebook', path: 'M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z' },
@@ -213,7 +254,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={label}
-                    className="group w-9 h-9 bg-[#0c0f14]/5 border border-[#0c0f14]/8 rounded-full flex items-center justify-center text-[#0c0f14]/35 hover:text-brand-gold hover:bg-brand-gold/10 hover:border-brand-gold/20 transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)]"
+                    className="group w-9 h-9 bg-[#0c0f14]/5 border border-[#0c0f14]/8 rounded-full flex items-center justify-center text-[#0c0f14]/35 hover:text-brand-blue hover:bg-brand-blue/10 hover:border-brand-blue/20 hover:scale-110 transition-all duration-300 ease-[cubic-bezier(0.32,0.72,0,1)]"
                   >
                     <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5">
                       <path d={path} />
@@ -224,29 +265,50 @@ export default function Footer() {
             </div>
 
             {/* Col 2: Map */}
-            <div className="reveal" style={{ transitionDelay: '160ms' }}>
-              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem] h-full min-h-[280px]">
-                <div className="bg-brand-sand rounded-[calc(2rem-0.375rem)] overflow-hidden h-full relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]">
-                  <iframe
-                    title="Yachts1 Dubai Marina location"
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3613.433433534571!2d55.138244275159195!3d25.086433236151433!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f15195e2f750d%3A0xe53a3eb8852e008!2sDubai%20Marina%20Mall!5e0!3m2!1sen!2sae!4v1716381985000!5m2!1sen!2sae"
-                    className="w-full h-full min-h-[280px] border-0 grayscale"
-                    allowFullScreen
-                    loading="lazy"
-                    referrerPolicy="no-referrer-when-downgrade"
-                  />
+            <div className="gsap-reveal">
+              <div className="bg-[#0c0f14]/3 border border-[#0c0f14]/8 p-1.5 rounded-4xl h-full min-h-70">
+                <div className="bg-brand-sand rounded-[1.625rem] overflow-hidden h-full min-h-70 relative shadow-[inset_0_1px_1px_rgba(255,255,255,0.6)]">
+                  <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(12,15,20,0.055)_1px,transparent_1px),linear-gradient(0deg,rgba(12,15,20,0.055)_1px,transparent_1px)] bg-[size:42px_42px]" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_58%_46%,rgba(2,132,199,0.22),transparent_18%),radial-gradient(circle_at_42%_62%,rgba(12,15,20,0.09),transparent_22%)]" />
+                  <div className="absolute left-[18%] right-[12%] top-[42%] h-3 rounded-full bg-white/60 border border-[#0c0f14]/8 rotate-[-10deg]" />
+                  <div className="absolute left-[34%] right-[20%] top-[58%] h-3 rounded-full bg-white/45 border border-[#0c0f14]/8 rotate-[18deg]" />
+                  <div className="absolute left-[51%] top-[42%] -translate-x-1/2 -translate-y-1/2">
+                    <div className="relative w-16 h-16 rounded-full bg-brand-blue/15 border border-brand-blue/25 flex items-center justify-center">
+                      <div className="w-8 h-8 rounded-full bg-brand-blue shadow-[0_12px_32px_rgba(2,132,199,0.32)] flex items-center justify-center text-white">
+                        <svg className="w-4 h-4" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.7">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 14s5-4.2 5-8.1A5 5 0 003 5.9C3 9.8 8 14 8 14z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7.5h.01" />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
                   <div className="absolute top-4 left-4 bg-[#f0f6fc]/95 border border-[#0c0f14]/8 px-3 py-1.5 rounded-full">
                     <span className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#0c0f14]/60">Dubai Marina</span>
+                  </div>
+                  <div className="absolute left-5 right-5 bottom-5 bg-[#f0f6fc]/92 backdrop-blur-sm border border-[#0c0f14]/8 rounded-2xl p-4">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-brand-blue mb-1">Yachts One LLC</p>
+                    <p className="text-sm text-[#0c0f14]/70 leading-relaxed">Dubai Marina Club, WH-453, P.O.Box 122261, Dubai, UAE</p>
+                    <a
+                      href="https://www.google.com/maps/search/?api=1&query=Dubai%20Marina%20Club%20WH-453%20Yachts%20One%20LLC"
+                      target="_blank"
+                      rel="noreferrer noopener"
+                      className="mt-3 inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-[#0c0f14]/55 hover:text-brand-blue transition-colors"
+                    >
+                      Open map
+                      <svg className="w-3 h-3" fill="none" viewBox="0 0 14 14" stroke="currentColor" strokeWidth="1.5">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M2 12L12 2M12 2H4M12 2v8" />
+                      </svg>
+                    </a>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Col 3: Contact form */}
-            <div className="reveal" style={{ transitionDelay: '240ms' }}>
-              <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-1.5 rounded-[2rem] h-full">
-                <div className="bg-[#f0f6fc] rounded-[calc(2rem-0.375rem)] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-5 h-full">
-                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-gold font-sans">Send an inquiry</p>
+            <div className="gsap-reveal">
+              <div className="bg-[#0c0f14]/3 border border-[#0c0f14]/8 p-1.5 rounded-4xl h-full">
+                <div className="bg-[#f0f6fc] rounded-[1.625rem] p-6 shadow-[inset_0_1px_1px_rgba(255,255,255,0.9)] space-y-5 h-full">
+                  <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-brand-blue font-sans">Send an inquiry</p>
 
                   <form onSubmit={handleContactSubmit} className="space-y-3" noValidate>
                     <div className="grid grid-cols-2 gap-2.5">
@@ -256,7 +318,7 @@ export default function Footer() {
                         { id: 'c-phone', type: 'tel', placeholder: 'Phone number', req: false, val: formData.phone, key: 'phone' },
                         { id: 'c-country', type: 'text', placeholder: 'Country', req: false, val: formData.country, key: 'country' },
                       ].map(({ id, type, placeholder, req, val, key }) => (
-                        <div key={id} className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-0.5 rounded-xl">
+                        <div key={id} className="bg-[#0c0f14]/3 border border-[#0c0f14]/8 p-0.5 rounded-xl">
                           <input
                             id={id}
                             type={type}
@@ -264,13 +326,13 @@ export default function Footer() {
                             placeholder={placeholder}
                             value={val}
                             onChange={(e) => setFormData({ ...formData, [key]: e.target.value })}
-                            className="w-full bg-[#f0f6fc] rounded-[calc(0.75rem-0.125rem)] px-3 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                            className="w-full bg-[#f0f6fc] rounded-[0.625rem] px-3 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-blue/25 transition-all placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                           />
                         </div>
                       ))}
                     </div>
 
-                    <div className="bg-[#0c0f14]/[0.03] border border-[#0c0f14]/8 p-0.5 rounded-2xl">
+                    <div className="bg-[#0c0f14]/3 border border-[#0c0f14]/8 p-0.5 rounded-2xl">
                       <textarea
                         id="c-message"
                         required
@@ -278,7 +340,7 @@ export default function Footer() {
                         placeholder="How can we help?"
                         value={formData.message}
                         onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full bg-[#f0f6fc] rounded-[calc(1rem-0.125rem)] px-3.5 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-gold/25 transition-all resize-none placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
+                        className="w-full bg-[#f0f6fc] rounded-[0.875rem] px-3.5 py-2.5 text-xs font-sans text-[#0c0f14] focus:outline-none focus:ring-2 focus:ring-brand-blue/25 transition-all resize-none placeholder:text-[#0c0f14]/30 shadow-[inset_0_1px_1px_rgba(255,255,255,0.8)]"
                       />
                     </div>
 
@@ -298,7 +360,7 @@ export default function Footer() {
 
                   {formStatus === 'success' && (
                     <div className="p-3.5 bg-emerald-50 border border-emerald-100 text-emerald-700 text-xs rounded-2xl flex items-center gap-2.5 font-sans">
-                      <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
+                      <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M3 8l3.5 3.5 6.5-7" />
                       </svg>
                       Message received. Our team will be in touch shortly.
@@ -306,7 +368,7 @@ export default function Footer() {
                   )}
                   {formStatus === 'error' && (
                     <div className="p-3.5 bg-rose-50 border border-rose-100 text-rose-700 text-xs rounded-2xl flex items-center gap-2.5 font-sans">
-                      <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
+                      <svg className="w-4 h-4 shrink-0" fill="none" viewBox="0 0 16 16" stroke="currentColor" strokeWidth="1.5">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M8 5v4m0 2.5v.5M2 8a6 6 0 1012 0A6 6 0 002 8z" />
                       </svg>
                       Please fill in your name, email, and message.

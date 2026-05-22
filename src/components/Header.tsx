@@ -43,20 +43,20 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
       <a href="#yachts-grid" className="skip-link">Skip to content</a>
 
       {/* Floating island nav */}
-      <header className="fixed top-0 left-0 right-0 z-[60] flex flex-col items-center pt-5 pointer-events-none">
+      <header className="fixed top-0 left-0 right-0 z-[60] flex flex-col items-center pointer-events-none" style={{ paddingTop: 'max(1.25rem, env(safe-area-inset-top))' }}>
         {/* Main pill */}
         <div
           className={`pointer-events-auto mx-auto w-[calc(100%-2rem)] max-w-5xl transition-all duration-700 ease-[cubic-bezier(0.32,0.72,0,1)] ${
             isScrolled
-              ? 'bg-[#f0f6fc]/92 backdrop-blur-2xl shadow-[0_8px_32px_-8px_rgba(12,15,20,0.14),0_1px_0_rgba(12,15,20,0.06)]'
-              : 'bg-[#f0f6fc]/80 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(12,15,20,0.1)]'
-          } rounded-full border border-[#0c0f14]/8 px-2 py-1.5`}
+              ? 'bg-[#f0f6fc]/96 backdrop-blur-3xl shadow-[0_12px_40px_-8px_rgba(12,15,20,0.18),0_1px_0_rgba(12,15,20,0.07)] border-[#0c0f14]/12'
+              : 'bg-[#f0f6fc]/85 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(12,15,20,0.1)] border-[#0c0f14]/8'
+          } rounded-full border px-2 py-1.5`}
         >
           <div className="flex items-center justify-between gap-4 px-2">
             {/* Logo */}
             <button
               onClick={() => setActiveBrand('')}
-              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-full flex-shrink-0"
+              className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full flex-shrink-0"
               aria-label="Yachts1 home"
             >
               <img
@@ -77,13 +77,13 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
                     onClick={() => handleNavClick(item)}
                     className={`relative text-[11px] font-semibold tracking-[0.07em] uppercase py-2 px-3.5 rounded-full cursor-pointer whitespace-nowrap transition-all duration-500 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                       isActive
-                        ? 'text-[#0c0f14] bg-brand-gold/15'
+                        ? 'text-[#0c0f14] bg-brand-blue/15'
                         : 'text-[#0c0f14]/60 hover:text-[#0c0f14] hover:bg-[#0c0f14]/5'
                     }`}
                   >
                     {item.name}
                     {isActive && (
-                      <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-gold" />
+                      <span className="absolute bottom-1.5 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-brand-blue" />
                     )}
                   </button>
                 );
@@ -114,7 +114,7 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
             {/* Mobile hamburger */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gold rounded-full"
+              className="lg:hidden w-9 h-9 flex flex-col items-center justify-center gap-[5px] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-blue rounded-full"
               aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={isMobileMenuOpen}
             >
@@ -146,7 +146,7 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
                 onClick={() => setActiveBrand(activeBrand === brand ? '' : brand)}
                 className={`text-[9px] font-bold tracking-[0.15em] uppercase py-1 px-3 rounded-full cursor-pointer transition-all duration-400 ease-[cubic-bezier(0.32,0.72,0,1)] ${
                   activeBrand === brand
-                    ? 'bg-brand-gold text-white shadow-[0_2px_8px_rgba(2,132,199,0.35)]'
+                    ? 'bg-brand-blue text-white shadow-[0_2px_8px_rgba(2,132,199,0.35)]'
                     : 'text-[#0c0f14]/50 hover:text-[#0c0f14] hover:bg-[#0c0f14]/5'
                 }`}
               >
@@ -163,6 +163,7 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
           isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         } bg-[#f0f6fc]/95 backdrop-blur-3xl flex flex-col justify-center items-center`}
         aria-hidden={!isMobileMenuOpen}
+        ref={(el) => { if (el) (el as any).inert = !isMobileMenuOpen; }}
       >
         <nav className="flex flex-col items-center gap-2 w-full px-8">
           {navItems.map((item, idx) => {
@@ -175,7 +176,7 @@ export default function Header({ activeBrand, setActiveBrand, onNavigateToSectio
                   isMobileMenuOpen
                     ? 'opacity-100 translate-y-0 blur-none'
                     : 'opacity-0 translate-y-8 blur-sm'
-                } ${isActive ? 'text-brand-gold' : 'text-[#0c0f14]/80 hover:text-[#0c0f14]'}`}
+                } ${isActive ? 'text-brand-blue' : 'text-[#0c0f14]/80 hover:text-[#0c0f14]'}`}
                 style={{ transitionDelay: isMobileMenuOpen ? `${idx * 60 + 100}ms` : '0ms' }}
               >
                 {item.name}
